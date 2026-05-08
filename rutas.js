@@ -28,7 +28,34 @@ router.get("/coders",
                 return resp.status(404).send("Not found")
             }
             return resp.json(result)
+        } else if (age) {
+            const result = data.filter(
+                (objet) => age == objet.age)
+            if (result == -1) {
+                return resp.status(404).send("Not found")
+            }
+            return resp.json(result)
+        } else if (status) {
+            const result = data.filter(
+                (objet) => status === objet.status)
+            if (result == -1) {
+                return resp.status(404).send("Not found")
+            }
+            return resp.json(result)
+        } else if (isActive) {
+            const result = data.filter(
+                (objet) => {
+                    return isActive == String(objet.isActive)
+                })
+
+            if (result == -1) {
+                return resp.status(404).send("Not found")
+            }
+            return resp.json(result)
         }
+
+
+
 
         resp.json(data)
     }
