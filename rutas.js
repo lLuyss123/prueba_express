@@ -12,7 +12,7 @@ router.post("/coder",
 
 router.get("/coders",
     (req,resp)=>{
-        const {id}=req.query;
+        const id=Number(req.query.id);
         const data=getData();
         if (id) {
             const index =data.findIndex(
@@ -21,7 +21,7 @@ router.get("/coders",
                 }
             )
             if(index==-1){
-                return resp.status(404)
+                return resp.status(404).send("Not found")
             }
             return resp.json(data[index])
         }
