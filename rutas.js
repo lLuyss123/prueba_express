@@ -24,21 +24,21 @@ router.get("/coders",
         } else if (name) {
             const result = data.filter(
                 (objet) => name === objet.name)
-            if (result == -1) {
+            if (result.length == 0) {
                 return resp.status(404).send("Not found")
             }
             return resp.json(result)
         } else if (age) {
             const result = data.filter(
                 (objet) => age == objet.age)
-            if (result == -1) {
+            if (result.length == 0) {
                 return resp.status(404).send("Not found")
             }
             return resp.json(result)
         } else if (status) {
             const result = data.filter(
                 (objet) => status === objet.status)
-            if (result == -1) {
+            if (result.length == 0) {
                 return resp.status(404).send("Not found")
             }
             return resp.json(result)
@@ -48,18 +48,13 @@ router.get("/coders",
                     return isActive == String(objet.isActive)
                 })
 
-            if (result == -1) {
+            if (result.length == 0) {
                 return resp.status(404).send("Not found")
             }
             return resp.json(result)
         }
-
-
-
-
         resp.json(data)
     }
-
 )
 
 export default router
