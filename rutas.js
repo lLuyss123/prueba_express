@@ -12,23 +12,27 @@ router.post("/coder",
 
 router.get("/coders",
     (req, resp) => {
-        const id = Number(req.query.id);
+        const { id, name, age, status, isActive } = req.query;
         const data = getData();
         if (id) {
             const index = data.findIndex(
-                (objet) => {
-                    return objet.id === id
-                }
-            )
+                (objet) => { return objet.id == id })
             if (index == -1) {
                 return resp.status(404).send("Not found")
             }
             return resp.json(data[index])
+        } else if (name) {
+            const result = data.filter(
+                (objet) => name === objet.name)
+            if (result == -1) {
+                return resp.status(404).send("Not found")
+            }
+            return resp.json(result)
         }
 
         resp.json(data)
     }
+
 )
 
 export default router
-
