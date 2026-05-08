@@ -6,6 +6,6 @@ export function getData() {
 }
 
 export function setData(data) {
-    //Esta vaina  retorna un JSON  pero noosotros lo queremos como un Objeto. por eso hacemos JSON.stringfy....
+    //Esta vaina  objeto pero noosotros lo queremos como un string en formato JSON. por eso hacemos JSON.stringfy....
     fs.writeFileSync(rutaDB, JSON.stringify(data, null, 4))
 }
