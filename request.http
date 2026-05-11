@@ -1,0 +1,12 @@
+
+GET http://localhost:3000/riwi/coders
+###
+POST http://localhost:3000/riwi/coder
+Content-Type: application/json
+
+{
+    "name": "probando22",
+    "age": 19,
+    "status": "training",
+    "isActive": true
+}
