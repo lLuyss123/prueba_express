@@ -5,13 +5,51 @@ const router = Router();
 router.post("/coder", (req, res) => {
   const data = getData();
   data.push({
-    "id": data.length + 1,
-    ...req.body
+    id: data.length + 1,
+    ...req.body,
   });
-  setData(data)
+  setData(data);
   res.status(200).json({
     menssage: "TODO OK",
   });
+});
+
+router.put("/coders", (req, res) => {
+  const { id } = req.query;
+  const data = getData();
+  const findIndex = data.findIndex((usuario) => usuario.id == id);
+
+  if (id) {
+    data[findIndex] = {
+      ...data[findIndex],
+      ...req.body,
+    };
+    setData(data);
+    res.status(200).json({
+      menssage: "TODO OK",
+    });
+  } else {
+    res.status(404).json({
+      menssage: "NOT FOUND",
+    });
+  }
+});
+
+router.delete("/coders", (req, res) => {
+  const { id } = req.query;
+  const data = getData();
+  const findIndex = data.findIndex((usuario) => usuario.id == id);
+  if (id) {
+    data.splice(findIndex,1);
+    setData(data);
+    res.status(200).json({
+      menssage: "TODO OK",
+    });
+  }else {
+    res.status(404).json({
+      menssage: "NOT FOUND",
+    });
+  }
 });
 
 router.get("/coders", (req, res) => {
